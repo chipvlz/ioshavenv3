@@ -1,0 +1,47 @@
+#!/bin/bash
+printf 'Username:'
+read user
+printf 'Destination:'
+read dest
+printf 'Install node dependencies? [y/n]'
+read depends
+printf 'Generate Site? [y/n]'
+read generate
+printf 'Run full sync? [y/n]'
+read full
+
+eval `ssh-agent`
+ssh-add
+
+if [[ $1 == '--production' ]]; then
+  dir='/code'
+else
+  dir='/beta'
+fi
+
+
+ssh -tt "$user@$dest" "mkdir -p $dir"
+
+if [[ $full == 'y' ]]; then
+  rsync -azP --delete --exclude-from '.gitignore' ./ "$user@$dest:$dir"
+else
+  rsync -azP --exclude-from '.gitignore' ./ "$user@$dest:$dir"
+fi
+
+if [[ $1 == '--setup' ]]; then
+  ssh -tt "$user@$dest" "cd $dir && ./server-setup.sh"
+fi
+
+if [[ $depends == 'y' ]]; then
+  ssh -tt "$user@$dest" "cd $dir && npm install"
+fi
+
+if [[ $generate == 'y' ]]; then
+  ssh -tt "$user@$dest" "cd $dir && npm run generate"
+fi
+
+
+# npm run generate
+
+
+kill $SSH_AGENT_PID
