@@ -5,11 +5,9 @@
         <a href="/" id="title">{{title}}</a>
         <div id="links">
           <slot name="links">
-            <a href="/">demo</a>
+            <square-button icon="fas fa-question" class="fill--white dark"/>
           </slot>
-          <a href="#menu" @click="toggle">
-            <i class="fal fa-bars"></i>
-          </a>
+          <square-button icon="fas fa-bars" class="fill--white dark" @click.native="toggle"/>
         </div>
     </div>
 
@@ -40,8 +38,12 @@
 </template>
 
 <script>
+import SquareButton from '~/components/ui/SquareButton'
 export default {
   props: ['color', 'title'],
+  components: {
+    SquareButton
+  },
   data () {
     return {
       isVisible: false
@@ -102,37 +104,50 @@ export default {
     right: 0;
     padding: 1rem;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
     text-decoration: none;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    a {
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: 1px solid white;
-      padding: 0.5rem;
-      margin-right: 1rem;
-      display: inline-block;
-      &:last-of-type {
-        margin-right: 0;
-      }
-      &:hover:not(#title) {
-        color: black;
-        background: white;
-      }
-      &#title {
-        padding: 0.5rem 0;
-        border-color: transparent;
-        float: left;
-        &:hover {
-          border-bottom: 1px solid white;
-        }
-      }
-    }
+    // a {
+    //   color: white;
+    //   text-decoration: none;
+    //   text-transform: uppercase;
+    //   border: 1px solid white;
+    //   padding: 0.5rem;
+    //   margin-right: 1rem;
+    //   display: inline-block;
+    //   &:last-of-type {
+    //     margin-right: 0;
+    //   }
+    //   &:hover:not(#title) {
+    //     color: black;
+    //     background: white;
+    //   }
+    //   &#title {
+    //     padding: 0.5rem 0;
+    //     border-color: transparent;
+    //     float: left;
+    //     &:hover {
+    //       border-bottom: 1px solid white;
+    //     }
+    //   }
+    // }
+}
+
+#title {
+  padding: 0.5rem 0;
+  border-color: transparent;
+  float: left;
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+  &:hover {
+    // border-bottom: 1px solid white;
+    text-decoration: underline;
+  }
 }
 .menu {
     position: fixed;
@@ -191,6 +206,10 @@ export default {
 
 .item > svg, .item > i {
   margin-right: 1rem
+}
+
+#links > * {
+  display: inline-block;
 }
 
 </style>

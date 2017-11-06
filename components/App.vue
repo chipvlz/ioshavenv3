@@ -6,14 +6,19 @@
       <div class="shadow"></div>
       <div class="description">mmmmmmmmmmmmmmm aaaaaaaaaaaaaaaaaaaaa</div>
     </div>
-    <div class="get fill--blue center">
-      get
-    </div>
+
+    <div class="get fill--red center" v-if="admin.editing">delete</div>
+    <div class="get fill--blue center" v-else>get</div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    admin () {
+      return this.$store.getters['admin/get']
+    }
+  },
   methods: {
     resizeSquare () {
       let d = this.$refs.image
@@ -46,7 +51,7 @@ export default {
   margin: 0 1rem;
 }
 .get {
-    min-width: 3.2rem !important;
+    min-width: 4rem !important;
     font-size: 0.8rem;
     padding: 0.3rem;
     border-radius: 5rem;

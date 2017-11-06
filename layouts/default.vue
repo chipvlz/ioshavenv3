@@ -2,8 +2,8 @@
   <div>
     <nuxt id="content"/>
     <sidebar color="#F44336" title="iOS Haven">
-      <a href="/profile" slot="links">
-        <i class="fas fa-user"></i>
+      <a href="/profile" slot="links" class="mr-5">
+        <square-button icon="fas fa-user" class="fill--white dark"/>
       </a>
       <!-- <a href="/auth" slot="links"><i class="fas fa-user"></i></a> -->
       <div slot="content">
@@ -16,9 +16,11 @@
 
 <script>
 import Sidebar from '~/components/Sidebar.vue'
+import SquareButton from '~/components/ui/SquareButton'
 export default {
   components: {
-    Sidebar
+    Sidebar,
+    SquareButton
   }
 }
 </script>
@@ -32,7 +34,7 @@ export default {
   max-width: 100vw;
   max-height: 100vh;
   @media (max-width: 500px) {
-    padding: 1rem 0;
+    padding: 1.6rem 0;
   }
 }
 
