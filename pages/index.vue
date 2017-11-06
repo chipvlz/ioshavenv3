@@ -9,8 +9,8 @@
         Nuxt.js project
       </h2>
       <div class="links">
-        <a href="#menu" class="button--green" @click="launch">Launch</a>
-        <a href="/docs" target="_blank" class="button--grey">Docs</a>
+        <a href="#menu" class="fill--red p1 pr2 pl2 m-3" @click="launch">Launch</a>
+        <a href="/docs" target="_blank" class="fill--blue p1 pr2 pl2 m-3">Docs</a>
       </div>
     </div>
   </section>

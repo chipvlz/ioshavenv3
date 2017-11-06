@@ -14,7 +14,8 @@ const appSchema = new Schema({
   version: String,
   description: String,
   ratings: Array,
-  downloads: Number
+  downloads: Number,
+  size: String
 })
 
 module.exports = mongoose.model('App', appSchema)

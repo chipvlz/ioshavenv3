@@ -31,6 +31,9 @@ export default {
   padding: 2rem 1rem;
   max-width: 100vw;
   max-height: 100vh;
+  @media (max-width: 500px) {
+    padding: 1rem 0;
+  }
 }
 
 .button--green {
