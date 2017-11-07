@@ -1,22 +1,26 @@
 <template lang="html">
-  <div class="card flex p-5 app">
-    <div ref="image" class="image"></div>
+  <a class="card flex p-5 app" :href="page">
+    <div ref="image" class="image" :style="{'background-image': `url('${data.image}')`}"></div>
     <div class="content">
-      <div class="h6 mb-3"><strong>app name</strong></div>
+      <div class="h6 mb-3"><strong>{{data.name}}</strong></div>
       <div class="shadow"></div>
-      <div class="description">mmmmmmmmmmmmmmm aaaaaaaaaaaaaaaaaaaaa</div>
+      <div class="description">{{data.description}}</div>
     </div>
 
     <div class="get fill--red center" v-if="admin.editing">delete</div>
     <div class="get fill--blue center" v-else>get</div>
-  </div>
+  </a>
 </template>
 
 <script>
 export default {
+  props: ['data'],
   computed: {
     admin () {
       return this.$store.getters['admin/get']
+    },
+    page () {
+      return '/app/' + this.data.uid
     }
   },
   methods: {
@@ -36,15 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped="">
-.app {
-  height: 5rem;
-  position: relative;
-  width: 300px;
-  flex-grow: 1;
-  margin: 0.3rem;
-  justify-content: space-between;
-  align-items: center;
-}
 .content {
   overflow: hidden;
   flex-grow: 1;
@@ -69,7 +64,9 @@ export default {
     top: 100%;
 }
 .image {
-  background: #aaa;
   padding: 2rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 </style>

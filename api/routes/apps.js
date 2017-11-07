@@ -10,25 +10,33 @@ router.post('/modify', (req, res) => {
       uid: req.body.uid || newUID
     },
     req.body.data || {},
-    {upsert: true, setDefaultsOnInsert: true}
+    {upsert: true, setDefaultsOnInsert: true, new: true}
   )
   .then(doc => {
-    if (!doc) return App.find({uid: newUID})
+    // if (!req.body.uid) return App.findOne({uid: newUID})
     return res.json(doc)
   })
-  .then(doc => {
-    return res.json(doc)
-  })
+  // .then(doc => {
+  //   return res.json(doc)
+  // })
   .catch(err => {
     res.json(err)
   })
 })
 
-router.get('/get/:uid', (req, res) => {
-  App.find({uid: req.params.uid})
-  .then(doc => {
-    res.json(doc)
-  })
+router.get('/get/:uid?', (req, res) => {
+  if (req.params.uid) {
+    App.findOne({uid: req.params.uid})
+    .then(doc => {
+      res.json(doc)
+    })
+  } else {
+    App.find()
+    .then(doc => {
+      res.json(doc)
+    })
+  }
+
 })
 
 module.exports = router

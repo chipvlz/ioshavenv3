@@ -1,21 +1,20 @@
 export const state = () => ({
-  editing: false
+  admin: {}
 })
 
 export const getters = {
-  get: state => {
-    return state
-  }
-}
-
-export const mutations = {
-  toggleEdit (state) {
-    state.editing = !state.editing
+  get: (state, getters, parent) => {
+    const res = {
+      isAdmin: parent.auth.isAdmin,
+      editing: parent.auth.editing
+    }
+    return res
   }
 }
 
 export const actions = {
-  edit (context) {
-    context.commit('toggleEdit')
+  async edit ({commit, rootGetters}) {
+    const doc = await this.$axios.$get('/users/editing')
+    commit('set', doc, {root: true})
   }
 }

@@ -111,30 +111,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    // a {
-    //   color: white;
-    //   text-decoration: none;
-    //   text-transform: uppercase;
-    //   border: 1px solid white;
-    //   padding: 0.5rem;
-    //   margin-right: 1rem;
-    //   display: inline-block;
-    //   &:last-of-type {
-    //     margin-right: 0;
-    //   }
-    //   &:hover:not(#title) {
-    //     color: black;
-    //     background: white;
-    //   }
-    //   &#title {
-    //     padding: 0.5rem 0;
-    //     border-color: transparent;
-    //     float: left;
-    //     &:hover {
-    //       border-bottom: 1px solid white;
-    //     }
-    //   }
-    // }
+    height: 4rem;
 }
 
 #title {

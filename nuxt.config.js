@@ -33,8 +33,8 @@ module.exports = {
   },
   modules: ['@nuxtjs/axios'],
   axios: {
-    baseURL: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8000/' : 'https://api.ioshaven.co/',
-    browserBaseURL: (process.env.NODE_ENV !== 'production') ? 'http://localhost:3000/' : 'https://ioshaven.co/'
+    baseURL: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8000/' : 'https://api.ioshaven.co/'
+    // browserBaseURL: (process.env.NODE_ENV !== 'production') ? 'http://localhost:3000/' : 'https://ioshaven.co/'
   },
   /*
   ** Customize the progress bar color

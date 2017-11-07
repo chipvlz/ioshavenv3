@@ -140,16 +140,42 @@ $button-colors: 'red' $red, 'green' $green,  'blue' $blue, 'white' $white;
   $class: nth($color, 1);
   $value: nth($color, 2);
   .fill--#{$class} {
-    color: $value;
-    border: 1px solid $value;
-    text-decoration: none;
+    color: $value !important;
+    border: 1px solid $value !important;
+    text-decoration: none !important;
     &:hover {
-      color: white;
-      background: $value;
-      cursor: pointer;
+      color: white !important;
+      background: $value !important;
+      cursor: pointer !important;
     }
     &.dark:hover {
-      color: black
+      color: black !important;
     }
+  }
+}
+
+
+.app {
+  height: 5rem;
+  position: relative;
+  width: calc(100% / 3 - (0.3rem * 2));
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 576px) {
+    width: calc(100% / 2 - (0.3rem * 2));
+  }
+  @media screen and (min-width: 768px) {
+    width: calc(100% / 3 - (0.3rem * 2));
+  }
+  &:hover{
+    cursor: pointer;
+    // border-color: $
+    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3);
   }
 }

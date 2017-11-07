@@ -81,8 +81,8 @@ export default {
     },
     submitForm (e) {
       // if (this.isValid()) {
-      e.preventDefault()
-      console.log(this.$parent)
+      // e.preventDefault()
+      // console.log(this.$parent)
       //   if (this.form === 'signup') {
       //     axios.post(process.env.api + 'users/create', this.forminput).then(doc => {
       //       console.log(doc)

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="apps wrapper">
     <app-admin v-if="auth.isAdmin" class="m-3"/>
-    <app v-for="n in 12" :key="n"></app>
+    <app v-for="app in apps" :key="app.name" :data="app" class="m-3"></app>
     <div class="card m-3 mt2 fill--blue center">
       Load more apps.
     </div>
@@ -11,15 +11,20 @@
 <script>
 import App from '~/components/App.vue'
 import AppAdmin from '~/components/AppAdmin.vue'
+import AppAdd from '~/components/AppAdd.vue'
 export default {
   computed: {
     auth () {
       return this.$store.getters.auth
+    },
+    apps () {
+      return this.$store.getters['apps/get']
     }
   },
   components: {
     App,
-    AppAdmin
+    AppAdmin,
+    AppAdd
   }
 }
 </script>

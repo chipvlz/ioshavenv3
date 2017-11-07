@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost/ioshaven', {
 
 
 // use sessions for tracking logins
-secret = randomatic('Aa0!', 24)
+// secret = randomatic('Aa0!', 24)
 app.use(session({
   secret: 'secret szechuan sauce',
   resave: false,

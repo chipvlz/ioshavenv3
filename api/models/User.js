@@ -19,6 +19,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isAdmin: Number,
+  editing: Number
 })
 
 userSchema.pre('save', function (next) {
@@ -36,6 +38,7 @@ userSchema.statics.authenticate = function (obj) {
         {username: obj.username}
     ]})
     .then(doc => {
+      console.log(doc);
       bcrypt.compare(obj.password, doc.password, (err, result) => {
         if (!result) reject({})
         else resolve(doc)

@@ -56,6 +56,22 @@ router.post('/login', function (req, res) {
   })
 })
 
+
+async function authorize(req, res, next) {
+  if (!req.session.email || !req.session.password) return res.json(null)
+  req.auth = await User.authenticate({
+    email: req.session.email,
+    username: req.session.username,
+    password: req.session.password
+  })
+  .catch(err => {
+    res.json(null)
+  })
+  next()
+  // return response
+}
+
+
 router.get('/auth', function (req, res) {
   if (!req.session.email || !req.session.password) return res.json('no session')
   User.authenticate({
@@ -64,8 +80,8 @@ router.get('/auth', function (req, res) {
     password: req.session.password
   })
   .then(doc => {
-    req.session.password = req.session.password
-    req.session.email = doc.email
+    // req.session.password = req.session.password
+    // req.session.email = doc.email
     res.json(doc)
   })
   .catch(err => {
@@ -82,6 +98,16 @@ router.post('/logout', function (req, res) {
 
 router.all('/', (req, res) => {
   res.json('asdf')
+})
+
+router.get('/editing', authorize, function (req, res) {
+  User.findOneAndUpdate(
+    {email: req.auth.email, username: req.auth.username},
+    {$bit: {editing: {xor: 1}}},
+    {new: true}
+  ).then(doc => {
+    res.json(doc)
+  })
 })
 
 module.exports = router
