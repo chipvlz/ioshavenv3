@@ -2,15 +2,15 @@
   <section class="container">
     <div>
       <logo/>
-      <h1 class="title">
+      <h1 class="title mt1">
         beta.ioshaven.co
       </h1>
-      <h2 class="subtitle">
+      <h2 class="subtitle mt-1">
         Nuxt.js project
       </h2>
       <div class="links">
-        <a href="#menu" class="fill--red p1 pr2 pl2 m-3" @click="launch">Launch</a>
-        <a href="/docs" target="_blank" class="fill--blue p1 pr2 pl2 m-3">Docs</a>
+        <a href="#menu" class="fill--white p1 pr2 pl2 m-3 dark" @click="launch">Launch</a>
+        <a href="/docs" target="_blank" class="fill--white p1 pr2 pl2 m-3 dark">Docs</a>
       </div>
     </div>
   </section>
@@ -55,14 +55,14 @@ export default {
   display: block;
   font-weight: 300;
   font-size: 2rem;
-  color: #35495e;
+  color: white;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-weight: 300;
   font-size: 1rem;
-  color: #526488;
+  color: white;
   word-spacing: 5px;
   padding-bottom: 15px;
 }
