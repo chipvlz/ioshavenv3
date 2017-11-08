@@ -3,10 +3,10 @@
     <div>
       <logo/>
       <h1 class="title mt1">
-        beta.ioshaven.co
+        iOS Haven
       </h1>
       <h2 class="subtitle mt-1">
-        Nuxt.js project
+        DOWNLOAD IPAS, SIGNED APPS, APPLE DEVELOPER BETAS, AND JAILBREAKS.
       </h2>
       <div class="links">
         <a href="#menu" class="fill--white p1 pr2 pl2 m-3 dark" @click="launch">Launch</a>
