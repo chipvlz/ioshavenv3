@@ -9,6 +9,7 @@
       <div slot="content">
         <a href="/" class="item"><i class="fas fa-home"></i>Home</a>
         <a href="/apps" class="item"><i class="fab fa-app-store"></i>Apps</a>
+        <a href="/credits" class="item"><i class="fas fa-code"></i>Credits</a>
       </div>
     </sidebar>
   </div>
