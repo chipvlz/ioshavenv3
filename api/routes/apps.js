@@ -4,6 +4,7 @@ const App = require('../models/App')
 const randomatic = require('randomatic');
 
 router.post('/modify', (req, res) => {
+  console.log(req.body)
   let newUID = randomatic('Aa0', 5)
   App.findOneAndUpdate(
     {
@@ -36,7 +37,25 @@ router.get('/get/:uid?', (req, res) => {
       res.json(doc)
     })
   }
-
 })
+
+
+router.post('/update', (req, res) => {
+  App.findOneAndUpdate(
+    {uid: req.body.data.uid},
+    req.body.data,
+    {new: true}
+  ).then(doc => {
+    res.json(doc)
+  })
+})
+
+router.post('/remove', (req, res) => {
+  App.findByIdAndRemove(req.body._id)
+  .then(doc => {
+    res.json(doc)
+  })
+})
+
 
 module.exports = router

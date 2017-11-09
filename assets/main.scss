@@ -179,3 +179,28 @@ $button-colors: 'red' $red, 'green' $green,  'blue' $blue, 'white' $white;
     box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3);
   }
 }
+
+
+.Editor {
+  .heading {
+    font-size: 2rem;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .strikethrough {
+    text-decoration: line-through;
+  }
+  .italic {
+    font-style: italic;
+  }
+}
+
+input.fancy {
+    padding: 1rem;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid #ccc;
+    background: rgba(0,0,0,0.05);
+    width: 100%;
+}

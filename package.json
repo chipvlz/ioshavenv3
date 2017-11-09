@@ -24,7 +24,8 @@
     "express-session": "^1.15.6",
     "mongoose": "^4.13.0",
     "nuxt": "^1.0.0-rc11",
-    "randomatic": "^2.0.0"
+    "randomatic": "^2.0.0",
+    "vue-autosize-textarea": "0.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

@@ -11,9 +11,13 @@ const appSchema = new Schema({
     unique: true,
     required: true
   },
-  image: {
+  icon: {
     type: String,
-    default: 'http://via.placeholder.com/150x150'
+    default: 'http://lorempixel.com/250/250/'
+  },
+  banner: {
+    type: String,
+    default: 'http://lorempixel.com/1500/500/'
   },
   unsigned: String,
   signed: String,
@@ -22,7 +26,8 @@ const appSchema = new Schema({
     type: String,
     default: 'No description'
   },
-
+  descriptionObject: String,
+  tags: String,
   views: Number,
   downloads: Number,
   size: Number

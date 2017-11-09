@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="wrapper">
-    <div class="banner">
-
+    <div class="banner" :style="{'background-image': `url('${app.banner}')`}">
+      <div class="icon" :style="{'background-image': `url('${app.icon}')`}"></div>
       <div class="installs">
         <div class="get fill--white center dark">Install</div>
         <div class="get fill--white center dark">Download</div>
@@ -9,7 +9,6 @@
       <div class="shadow"></div>
     </div>
     <div class="bar card flex">
-
       <div class="title m-3">
         <h4>{{app.name}}</h4>
       </div>
@@ -28,9 +27,46 @@
           <div class="label">Size</div>
         </div>
       </div>
+    </div>
 
 
+    <div class="card flex" v-if="!!auth.editing">
+      <square-button label="save" icon="fas fa-save" class="fill--blue" @click.native="saveApp"/>
+    </div>
 
+    <div class="card" v-if="!!auth.editing">
+      <div class="field">
+        <div class="h5 mb-5">Name</div>
+        <input type="text" v-model="app.name" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Version</div>
+        <input type="text" v-model="app.version" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Icon</div>
+        <input type="text" v-model="app.icon" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Banner</div>
+        <input type="text" v-model="app.banner" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Description</div>
+        <editor @save="saveDescription"/>
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Unsigned</div>
+        <input type="text" v-model="app.unsigned" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Signed</div>
+        <input type="text" v-model="app.signed" class="fancy">
+      </div>
+      <div class="field">
+        <div class="h5 mb-5">Tags</div>
+        <input type="text" v-model="app.tags" class="fancy">
+      </div>
     </div>
 
 
@@ -38,7 +74,22 @@
 </template>
 
 <script>
+import Editor from '~/components/Editor.vue'
+import SquareButton from '~/components/ui/SquareButton'
 export default {
+  components: {
+    Editor,
+    SquareButton
+  },
+  data () {
+    return {
+      // form : {
+      //   name: '',
+      //   image: '',
+      //
+      // }
+    }
+  },
   async asyncData ({params, store}) {
     store.commit('apps/uid', params.uid)
     let data = await store.getters['apps/get']
@@ -53,6 +104,26 @@ export default {
       if (val > 999) return (val / 1000).toFixed(1) + 'k'
       else if (val > 999999) return (val / 1000000).toFixed(1) + 'm'
       else return val
+    },
+    saveDescription (val) {
+      this.$store.commit('apps/update', val)
+    },
+    async saveApp () {
+      console.log('saving')
+      await this.$store.commit('apps/update', this.app)
+      await this.$store.commit('apps/mongo')
+      // let app = await this.$store.getters['apps/get']
+      // console.log(app)
+      // let result = await this.$axios.post('/apps/modify', app)
+      // console.log(result)
+    }
+  },
+  computed: {
+    auth () {
+      return this.$store.getters.auth
+    },
+    admin () {
+      return this.$store.getters['admin/get']
     }
   }
 }
@@ -65,6 +136,20 @@ export default {
     max-height: 250px;
     position: relative;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.icon {
+    padding: 2.5rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1;
+    border: 1px solid;
+    border-radius: 1rem;
+    background-position: center;
+    background-size: cover;
 }
 .get {
     min-width: 7rem !important;

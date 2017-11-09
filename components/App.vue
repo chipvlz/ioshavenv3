@@ -1,13 +1,13 @@
 <template lang="html">
   <a class="card flex p-5 app" :href="page">
-    <div ref="image" class="image" :style="{'background-image': `url('${data.image}')`}"></div>
+    <div ref="image" class="image" :style="{'background-image': `url('${data.icon}')`}"></div>
     <div class="content">
       <div class="h6 mb-3"><strong>{{data.name}}</strong></div>
       <div class="shadow"></div>
       <div class="description">{{data.description}}</div>
     </div>
 
-    <div class="get fill--red center" v-if="admin.editing">delete</div>
+    <div class="get fill--red center" v-if="admin.editing" @click="remove($event)">delete</div>
     <div class="get fill--blue center" v-else>get</div>
   </a>
 </template>
@@ -30,6 +30,13 @@ export default {
       let h = d.clientHeight
       d.style.flex = 'none'
       this.$refs.image.style['padding'] = h + 'px'
+    },
+    remove (e) {
+      e.preventDefault()
+      this.$store.commit('apps/remove', {
+        uid: this.data.uid,
+        _id: this.data._id
+      })
     }
   },
   mounted () {

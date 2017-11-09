@@ -22,6 +22,32 @@ export const mutations = {
   },
   uid (state, val) {
     state.current.uid = val
+  },
+  update (state, val) {
+    let i = state.apps.findIndex(app => {
+      return app.uid === state.current.uid
+    })
+    Object.keys(val).forEach(key => {
+      state.apps[i][key] = val[key]
+    })
+  },
+
+  remove (state, val) {
+    let i = state.apps.findIndex(app => {
+      return app.uid === val.uid
+    })
+    state.apps.splice(i, 1)
+    this.$axios.post('/apps/remove', {_id: val._id})
+  },
+
+  async mongo (state) {
+    let i = state.apps.find(app => {
+      return app.uid === state.current.uid
+    })
+    const doc = await this.$axios.$post('/apps/update', {
+      data: i
+    })
+    console.log(i, doc)
   }
 }
 
