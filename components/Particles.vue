@@ -1,7 +1,6 @@
 <template lang="html">
   <div>
     <div id="particles-js"></div>
-    <div id="logo" class="p7 mt9"></div>
   </div>
 </template>
 
@@ -42,12 +41,7 @@ export default {
    left: 0px;
  }
 
- #logo {
-   background-image: url('/logo.svg');
-   background-repeat: no-repeat;
-   background-position: center;
 
- }
 
  canvas {
    width: 100%;
