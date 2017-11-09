@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="wrapper">
+  <div class="wrapper uidpage">
     <div class="banner" :style="{'background-image': `url('${app.banner}')`}">
       <div class="icon" :style="{'background-image': `url('${app.icon}')`}"></div>
       <div class="installs">
@@ -130,6 +130,11 @@ export default {
 </script>
 
 <style lang="scss" scoped="">
+.uidpage {
+  @media (max-width: 500px) {
+    margin-top: -2rem;
+  }
+}
 .banner {
     background: rebeccapurple;
     height: 100vh;
@@ -143,7 +148,7 @@ export default {
 .icon {
     padding: 2.5rem;
     position: absolute;
-    bottom: 1rem;
+    top: 1rem;
     left: 1rem;
     z-index: 1;
     border: 1px solid;
