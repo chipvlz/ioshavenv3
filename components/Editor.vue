@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="Editor">
     <div class="" @mouseleave="save">
-      <autoresize v-for="(el, index) in els"
+      <auto-resize v-for="(el, index) in els"
                 v-model="el.content"
                 @keydown.enter.native="createElement($event)"
                 :id="'el-' + index"
@@ -9,20 +9,20 @@
                 @changeFocus="changeFocus"
                 @remove="remove(index)"
                 :classes="el.classes"
-                :key="index"></autoresize>
+                :key="index"></auto-resize>
     </div>
   </div>
 </template>
 
 <script>
 // import '~/static/autoresize.js'
-import autoresize from '~/components/ui/autoresize'
+import AutoResize from '~/components/ui/AutoResize'
 function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 export default {
   components: {
-    autoresize
+    AutoResize
   },
   data () {
     return {

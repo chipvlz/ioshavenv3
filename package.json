@@ -23,8 +23,8 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "marked": "^0.3.6",
-    "mongoose": "^4.13.0",
-    "nuxt": "^1.0.0-rc11",
+    "mongoose": "^4.13.1",
+    "nuxt": "^1.0.0-rc9",
     "randomatic": "^2.0.0",
     "vue-autosize-textarea": "0.0.1"
   },

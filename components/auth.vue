@@ -6,9 +6,6 @@
         <div class="field">
           <h2>Logout?</h2>
         </div>
-        <!-- <div class="field">
-          <p>You are currently signed in as <strong>{{$store.getters.auth.username}}</strong>. If you would like to logout click the button below.</p>
-        </div> -->
         <div class="field">
           <button type="submit">Logout</button>
         </div>

@@ -20,20 +20,6 @@
         please put content in me.
       </slot>
     </div>
-    <!-- <div class="menu hidden" v-if="!isVisible" v-on:click="toggle">
-      <div class="toggle">
-        MENU <i class="fal fa-bars"></i>
-      </div>
-    </div>
-    <div :style="{'background-color': color}" :class="{'menu': true, 'visible': isVisible, 'translate':!isVisible}">
-      <div class="toggle" v-on:click="toggle">
-        CLOSE <i class="fal fa-times"></i>
-      </div>
-
-      <slot name="content">
-        please put content in me.
-      </slot>
-    </div> -->
   </div>
 </template>
 
