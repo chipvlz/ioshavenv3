@@ -16,7 +16,6 @@
 <script>
 import App from '~/components/App.vue'
 import AppAdmin from '~/components/AppAdmin.vue'
-import AppAdd from '~/components/AppAdd.vue'
 import SearchBar from '~/components/ui/SearchBar.vue'
 
 export default {
@@ -42,7 +41,6 @@ export default {
   components: {
     App,
     AppAdmin,
-    AppAdd,
     SearchBar
   },
   methods: {

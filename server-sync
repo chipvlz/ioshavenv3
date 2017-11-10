@@ -33,11 +33,11 @@ if [[ $1 == '--setup' ]]; then
 fi
 
 if [[ $depends == 'y' ]]; then
-  ssh -tt "$user@$dest" "cd $dir && npm install"
+  ssh -tt "$user@$dest" "cd $dir && rm -rf .nuxt && rm -rf dist && npm install"
 fi
 
 if [[ $generate == 'y' ]]; then
-  ssh -tt "$user@$dest" "cd $dir && npm run generate"
+  ssh -tt "$user@$dest" "cd $dir && npm run build && npm run generate"
 fi
 
 
