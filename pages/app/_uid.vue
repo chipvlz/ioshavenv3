@@ -3,8 +3,8 @@
     <div class="banner" :style="{'background-image': `url('${app.banner}')`}">
       <div class="icon" :style="{'background-image': `url('${app.icon}')`}"></div>
       <div class="installs">
-        <div class="get fill--white center dark">Install</div>
-        <div class="get fill--white center dark">Download</div>
+        <a class="get fill--white center dark" :href="api + 'apps/install/' + app.uid" >Install</a>
+        <a class="get fill--white center dark" :href="api + 'apps/install/' + app.uid" >Download</a>
       </div>
       <div class="shadow"></div>
     </div>
@@ -30,9 +30,8 @@
     </div>
 
 
-    <div class="card flex" v-if="!!auth.editing">
-      <square-button label="save" icon="fas fa-save" class="fill--blue" @click.native="saveApp"/>
-    </div>
+
+    <app-admin v-if="!!auth.isAdmin" :app="app"/>
 
     <div class="card" v-if="!!auth.editing">
       <div class="field">
@@ -53,7 +52,8 @@
       </div>
       <div class="field">
         <div class="h5 mb-5">Description</div>
-        <editor @save="saveDescription"/>
+        <textarea rows="8" v-model="app.description" class="fancy"></textarea>
+        <!-- <editor @save="saveDescription"/> -->
       </div>
       <div class="field">
         <div class="h5 mb-5">Unsigned</div>
@@ -70,29 +70,35 @@
     </div>
 
 
+    <div class="card" v-if="!auth.editing">
+      <div class="markdown" v-html="descriptionHTML"></div>
+    </div>
+    <div class="card flex tags">
+      <div class="tag" v-for="tag in tags">{{tag}}</div>
+      <div class="tag" v-for="tag in tags">{{tag}}</div>
+      <div class="tag" v-for="tag in tags">{{tag}}</div>
+      <div class="tag" v-for="tag in tags">{{tag}}</div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import Editor from '~/components/Editor.vue'
 import SquareButton from '~/components/ui/SquareButton'
+import AppAdmin from '~/components/AppAdmin.vue'
+import marked from 'marked'
+import config from '~/nuxt.config.js'
 export default {
   components: {
     Editor,
-    SquareButton
+    SquareButton,
+    AppAdmin
   },
-  data () {
-    return {
-      // form : {
-      //   name: '',
-      //   image: '',
-      //
-      // }
-    }
-  },
-  async asyncData ({params, store}) {
+  async asyncData ({params, store, app}) {
     store.commit('apps/uid', params.uid)
     let data = await store.getters['apps/get']
+    app.$axios.$get('/apps/get/' + params.uid)
     return { app: data }
   },
   validate ({params, store}) {
@@ -104,18 +110,6 @@ export default {
       if (val > 999) return (val / 1000).toFixed(1) + 'k'
       else if (val > 999999) return (val / 1000000).toFixed(1) + 'm'
       else return val
-    },
-    saveDescription (val) {
-      this.$store.commit('apps/update', val)
-    },
-    async saveApp () {
-      console.log('saving')
-      await this.$store.commit('apps/update', this.app)
-      await this.$store.commit('apps/mongo')
-      // let app = await this.$store.getters['apps/get']
-      // console.log(app)
-      // let result = await this.$axios.post('/apps/modify', app)
-      // console.log(result)
     }
   },
   computed: {
@@ -124,6 +118,19 @@ export default {
     },
     admin () {
       return this.$store.getters['admin/get']
+    },
+    descriptionHTML () {
+      marked.setOptions({
+        sanitize: true,
+        smartypants: true
+      })
+      return marked(this.app.description)
+    },
+    api () {
+      return config.env.api
+    },
+    tags () {
+      return (this.app.tags) ? this.app.tags.split(',') : []
     }
   }
 }
@@ -151,7 +158,7 @@ export default {
     top: 1rem;
     left: 1rem;
     z-index: 1;
-    border: 1px solid;
+    border: 1px solid white;
     border-radius: 1rem;
     background-position: center;
     background-size: cover;
@@ -180,6 +187,9 @@ export default {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
+    @media (max-width: 500px) {
+      justify-content: center;
+    }
 }
 .info {
     margin: 0 0.5rem;
@@ -221,9 +231,21 @@ export default {
     bottom: -2rem;
     right: -2rem;
     height: 5rem;
-    width: 100vw;
+    width: 200vw;
     background: rgba(0, 0, 0, 0.67);
     filter: blur(2rem);
     z-index: 0;
+}
+.tags {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.tag {
+    padding: 0.3rem 1rem;
+    border: 1px solid #ccc;
+    margin: 0.3rem;
+    border-radius: 50rem;
+    flex-grow: 1;
+    text-align: center;
 }
 </style>

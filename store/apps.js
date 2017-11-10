@@ -1,6 +1,7 @@
 export const state = () => ({
   apps: [],
-  current: {}
+  current: {},
+  newest: {}
 })
 
 export const getters = {
@@ -10,6 +11,9 @@ export const getters = {
         return app.uid === state.current.uid
       })
     } else return state.apps
+  },
+  newest: state => {
+    return state.newest
   }
 }
 
@@ -19,6 +23,7 @@ export const mutations = {
   },
   add (state, val) {
     state.apps.push(val)
+    state.newest = val
   },
   uid (state, val) {
     state.current.uid = val
@@ -40,14 +45,15 @@ export const mutations = {
     this.$axios.post('/apps/remove', {_id: val._id})
   },
 
-  async mongo (state) {
+  mongo (state) {
     let i = state.apps.find(app => {
       return app.uid === state.current.uid
     })
-    const doc = await this.$axios.$post('/apps/update', {
+    this.$axios.$post('/apps/update', {
       data: i
+    }).then(doc => {
+      console.log(i, doc)
     })
-    console.log(i, doc)
   }
 }
 

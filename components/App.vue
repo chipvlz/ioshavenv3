@@ -37,6 +37,7 @@ export default {
         uid: this.data.uid,
         _id: this.data._id
       })
+      this.$emit('removed')
     }
   },
   mounted () {
@@ -51,6 +52,7 @@ export default {
   overflow: hidden;
   flex-grow: 1;
   margin: 0 1rem;
+  padding-top: 1rem;
 }
 .get {
     min-width: 4rem !important;

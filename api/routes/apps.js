@@ -27,7 +27,11 @@ router.post('/modify', (req, res) => {
 
 router.get('/get/:uid?', (req, res) => {
   if (req.params.uid) {
-    App.findOne({uid: req.params.uid})
+    App.findOneAndUpdate(
+      {uid: req.params.uid},
+      {$inc: {views: 1}},
+      {new: true}
+    )
     .then(doc => {
       res.json(doc)
     })
@@ -54,6 +58,19 @@ router.post('/remove', (req, res) => {
   App.findByIdAndRemove(req.body._id)
   .then(doc => {
     res.json(doc)
+  })
+})
+
+router.get('/install/:uid', (req, res) => {
+  App.findOneAndUpdate(
+    {uid: req.params.uid},
+    {$inc: {downloads: 1}}
+  )
+  .then(doc => {
+    res.redirect(doc.signed)
+  })
+  .catch(err => {
+    res.status(404).end()
   })
 })
 
