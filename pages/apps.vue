@@ -19,6 +19,7 @@ import AppAdmin from '~/components/AppAdmin.vue'
 import SearchBar from '~/components/ui/SearchBar.vue'
 
 export default {
+  middleware: ['authenticate', 'apps'],
   data () {
     return {
       filteredApps: [],

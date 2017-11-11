@@ -27,6 +27,7 @@ app.use(session({
   secret: 'secret szechuan sauce',
   resave: false,
   saveUninitialized: false,
+  cookie: {domain: '.ioshaven.co'},
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 14 * 24 * 60 * 60, //14 days

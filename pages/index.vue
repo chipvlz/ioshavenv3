@@ -19,7 +19,6 @@
 
 <script>
 import Particles from '~/components/Particles.vue'
-import axios from 'axios'
 export default {
   components: {
     Particles
@@ -28,17 +27,6 @@ export default {
     launch () {
       window.dispatchEvent(new Event('toggleSidebar'))
     }
-  },
-  mounted () {
-    axios.request({
-      baseURL: 'http://localhost:8000/',
-      method: 'get',
-      url: '/users/auth',
-      withCredentials: true,
-      responseType: 'json'
-    }).then(res => {
-      console.log(res.data)
-    })
   }
 }
 </script>

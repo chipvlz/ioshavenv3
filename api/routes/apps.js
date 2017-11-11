@@ -4,7 +4,6 @@ const App = require('../models/App')
 const randomatic = require('randomatic');
 
 router.post('/modify', (req, res) => {
-  console.log(req.body)
   let newUID = randomatic('Aa0', 5)
   App.findOneAndUpdate(
     {

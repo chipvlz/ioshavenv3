@@ -16,6 +16,7 @@
 import Auth from '~/components/Auth.vue'
 // import axios from 'axios'
 export default {
+  middleware: 'authenticate',
   components: {
     Auth
   },

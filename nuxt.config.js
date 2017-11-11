@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser')
 module.exports = {
   /*
   ** Headers of the page
@@ -58,5 +59,8 @@ module.exports = {
       }
     }
     // vendor: ['axios']
-  }
+  },
+  serverMiddleware: [
+    cookieParser()
+  ]
 }

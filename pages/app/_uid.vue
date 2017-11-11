@@ -73,10 +73,7 @@
     <div class="card" v-if="!auth.editing">
       <div class="markdown" v-html="descriptionHTML"></div>
     </div>
-    <div class="card flex tags">
-      <div class="tag" v-for="tag in tags">{{tag}}</div>
-      <div class="tag" v-for="tag in tags">{{tag}}</div>
-      <div class="tag" v-for="tag in tags">{{tag}}</div>
+    <div class="card flex tags" v-if="app.tags">
       <div class="tag" v-for="tag in tags">{{tag}}</div>
     </div>
 
@@ -90,6 +87,7 @@ import AppAdmin from '~/components/AppAdmin.vue'
 import marked from 'marked'
 import config from '~/nuxt.config.js'
 export default {
+  middleware: ['authenticate', 'apps'],
   components: {
     Editor,
     SquareButton,

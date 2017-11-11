@@ -13,12 +13,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }, { req, app }) {
-    const auth = await app.$axios.$get('/users/auth')
-    const apps = await app.$axios.$get('/apps/get')
-    commit('set', auth)
-    commit('apps/set', apps)
-  }
+  // async nuxtServerInit ({ commit }, { req, app }) {
+  //   const auth = await app.$axios.$get('/users/auth')
+  //   const apps = await app.$axios.$get('/apps/get')
+  //   commit('set', auth)
+  //   commit('apps/set', apps)
+  // }
 }
 
 export const getters = {

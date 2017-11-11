@@ -48,6 +48,10 @@ router.post('/login', function (req, res) {
     req.session.password = req.body.password
     req.session.email = doc.email || req.body.usernameOrEmail
     req.session.username = doc.username || req.body.usernameOrEmail
+    let origin = req.get('origin')
+    let rgx = /:\/\/(.[^/]+)/
+    let domain = origin.match(rgx)[1].split(':')[0]
+    req.session.cookie.domain = domain
     if (req.body.redirect) return res.redirect(req.body.redirect)
     res.json(doc)
   })
